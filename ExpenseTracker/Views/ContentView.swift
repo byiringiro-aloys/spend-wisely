@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        @EnvironmentObject var transactionListVM: TransactionListViewModel
             NavigationView(){
                 ScrollView{
                     VStack(alignment: .leading, spacing: 24){
@@ -16,6 +17,7 @@ struct ContentView: View {
                         Text("Overview")
                             .font(.title2)
                             .bold()
+                        RecentTransactionsList()
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -35,6 +37,14 @@ struct ContentView: View {
         }
     }
 
-#Preview{
-    ContentView()
+struct ContentView_Previews: PreviewProvider{
+    static let transactionListVM: TransactionListViewModel = {
+        let transactionListVM = TransactionListViewModel()
+        transactionListVM.transaction = transactionListPreviewData
+        return transactionListVM
+    }()
+    static var previews: some View{
+        ContentView()
+            .environmentObject(transactionListVM)
+    }
 }

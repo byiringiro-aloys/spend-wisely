@@ -15,7 +15,7 @@ struct TransactionRow: View {
                 .fill(Color.icon.opacity(0.3))
                 .frame(width:44, height: 44)
                 .overlay{
-                    Image(systemName: "snowflake")
+                    Image(systemName: transaction.icon)
                         .foregroundStyle(Color.icon)
                 }
             
