@@ -67,8 +67,6 @@ Secure Face ID / Touch ID lock
 Home	Add Expense	Stats
 📱	📱	📱
 
-Add real device screenshots once UI is ready.
-
 ## 📜 License
 
 This project is open-source. You may use, modify, and learn from it freely.
