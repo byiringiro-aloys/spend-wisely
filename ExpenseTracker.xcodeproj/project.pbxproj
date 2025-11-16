@@ -177,9 +177,6 @@
 			);
 			mainGroup = 15EA0BC32EC90CC700BCE6DA;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				153C8B152EC9D92E00613414 /* XCRemoteSwiftPackageReference "SwiftUIFontIcon" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 15EA0BCD2EC90CC700BCE6DA /* Products */;
 			projectDirPath = "";
@@ -541,16 +538,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		153C8B152EC9D92E00613414 /* XCRemoteSwiftPackageReference "SwiftUIFontIcon" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/huybuidac/SwiftUIFontIcon";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 15EA0BC42EC90CC700BCE6DA /* Project object */;
