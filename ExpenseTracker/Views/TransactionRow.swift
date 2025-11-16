@@ -44,5 +44,7 @@ struct TransactionRow: View {
 }
 
 #Preview {
-    TransactionRow(transaction: transactionPreviewData)
+    ForEach(transactionListPreviewData.prefix(1)){ transaction in
+        TransactionRow(transaction: transaction)
+    }
 }
