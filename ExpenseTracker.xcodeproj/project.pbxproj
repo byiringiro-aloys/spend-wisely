@@ -538,7 +538,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 15EA0BC42EC90CC700BCE6DA /* Project object */;
 }

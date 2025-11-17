@@ -7,6 +7,7 @@
 import Foundation
 import SwiftUI
 
+typealias TransactionGroup = [String: [Transaction]]
 
 struct RecentTransactionsList: View {
     @EnvironmentObject var transactionListVM: TransactionListViewModel
@@ -20,14 +21,14 @@ struct RecentTransactionsList: View {
                     
                 }label: {
                     HStack(spacing: 4){
-                        Text("See All ")
+                        Text("See All")
                         Image(systemName: "chevron.forward")
                     }
                     .foregroundStyle(Color.appText)
                 }
             }
             .padding()
-            ForEach(Array(transactionListVM.transaction.prefix(5).enumerated()),id: \.element){ index, transaction in
+            ForEach(Array(transactionListVM.transactions.prefix(5).enumerated()),id: \.element){ index, transaction in
                 TransactionRow(transaction: transaction)
                 Divider()
                     .opacity(index == 4 ? 0 : 1)
@@ -44,7 +45,7 @@ struct RecentTransactionsList_Previews: PreviewProvider {
     
     static let transactionListVModel: TransactionListViewModel = {
         let transactionListVM = TransactionListViewModel()
-        transactionListVM.transaction = transactionListPreviewData
+        transactionListVM.transactions = transactionListPreviewData
         return transactionListVM
     }()
     

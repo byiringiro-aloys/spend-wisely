@@ -10,7 +10,7 @@ import Combine
 
 
 final class TransactionListViewModel: ObservableObject{
-    @Published var transaction: [Transaction] = []
+    @Published var transactions: [Transaction] = []
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -42,8 +42,17 @@ final class TransactionListViewModel: ObservableObject{
                     print("finished fetching transactions.")
                 }
             } receiveValue: { [weak self] result in
-                self?.transaction = result
+                self?.transactions = result
             }
             .store(in: &cancellables)
+    }
+    
+    func groupTransactionsByMonth() -> TransactionGroup {
+        guard !transactions.isEmpty else {return [:]}
+        
+        let groupedTransactions = TransactionGroup(grouping: transactions){ $0.month }
+        
+        return groupedTransactions
+        
     }
 }

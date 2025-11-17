@@ -12,8 +12,7 @@ struct ContentView: View {
         @EnvironmentObject var transactionListVM: TransactionListViewModel
             NavigationView(){
                 ScrollView{
-                    VStack(alignment: .leading, spacing: 24){
-                        //MARK: Title
+                    VStack(alignment: .center, spacing: 24){
                         Text("Overview")
                             .font(.title2)
                             .bold()
@@ -38,13 +37,18 @@ struct ContentView: View {
     }
 
 struct ContentView_Previews: PreviewProvider{
-    static let transactionListVM: TransactionListViewModel = {
-        let transactionListVM = TransactionListViewModel()
-        transactionListVM.transaction = transactionListPreviewData
-        return transactionListVM
+    static let transactionListVModel : TransactionListViewModel = {
+        var transactionListVModel = TransactionListViewModel()
+        transactionListVModel.transactions = transactionListPreviewData
+        return transactionListVModel
+        
     }()
     static var previews: some View{
         ContentView()
-            .environmentObject(transactionListVM)
+            .environmentObject(transactionListVModel)
+            .colorScheme(.light)
+        ContentView()
+            .environmentObject(transactionListVModel)
+            .colorScheme(.dark)
     }
 }
