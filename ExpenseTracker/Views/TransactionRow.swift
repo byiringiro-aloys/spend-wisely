@@ -12,11 +12,11 @@ struct TransactionRow: View {
     var body: some View {
         HStack(spacing: 20){
             RoundedRectangle(cornerRadius: 20,style: .continuous)
-                .fill(Color.icon.opacity(0.3))
+                .fill(Color.AppIcon.opacity(0.3))
                 .frame(width:44, height: 44)
                 .overlay{
                     Image(systemName: transaction.icon)
-                        .foregroundStyle(Color.icon)
+                        .foregroundStyle(Color.AppIcon)
                 }
             
             VStack(alignment: .leading,spacing: 6){
@@ -48,3 +48,4 @@ struct TransactionRow: View {
         TransactionRow(transaction: transaction)
     }
 }
+

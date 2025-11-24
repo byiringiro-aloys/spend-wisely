@@ -13,10 +13,27 @@ struct TransactionList: View {
     var body: some View {
         VStack{
             List{
-                ForEach(Array(transactionListVM.groupTransactionsByMonth()),id: \.key){ month,transaction in
-                    
+                ForEach(Array(transactionListVM.groupTransactionsByMonth()),id: \.key){ month, transactions in
+                    Section {
+                        ForEach(transactions) { transaction in
+                            TransactionRow(transaction: transaction)
+                        }
+                    } header: {
+                        HStack {
+                            Text(month)
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            let monthTotal = transactions.reduce(0) { $0 + $1.signedAmount }
+                            Text(monthTotal, format: .currency(code: "USD"))
+                                .font(.subheadline)
+                                .foregroundColor(monthTotal >= 0 ? .green : .red)
+                        }
+                        .padding(.vertical, 4)
+                    }
                 }
             }
+            .listStyle(.plain)
             
         }
         .navigationTitle("Transactions")
@@ -46,4 +63,3 @@ struct TransactionList_Previews: PreviewProvider{
         
     }
 }
-

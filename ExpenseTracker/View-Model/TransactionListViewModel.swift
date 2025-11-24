@@ -19,6 +19,11 @@ final class TransactionListViewModel: ObservableObject{
     }
     
     func getTransactions(){
+        // Load dummy data instead of fetching from API
+        // When ready to connect to real API, uncomment the code below and remove this line
+        transactions = transactionListPreviewData
+        
+        /* Commented out API call - will be used when real API is ready
         guard let url = URL(string: "https://designcode.io/data/transactions.json") else {
             print("Invalid URL")
             return
@@ -45,6 +50,7 @@ final class TransactionListViewModel: ObservableObject{
                 self?.transactions = result
             }
             .store(in: &cancellables)
+        */
     }
     
     func groupTransactionsByMonth() -> TransactionGroup {
@@ -55,4 +61,30 @@ final class TransactionListViewModel: ObservableObject{
         return groupedTransactions
         
     }
+    
+    // MARK: - Financial Statistics
+    
+    var totalIncome: Double {
+        transactions
+            .filter { $0.type == TransactionType.credit.rawValue }
+            .reduce(0) { $0 + $1.amount }
+    }
+    
+    var totalExpenses: Double {
+        transactions
+            .filter { $0.type == TransactionType.debit.rawValue }
+            .reduce(0) { $0 + $1.amount }
+    }
+    
+    var currentBalance: Double {
+        totalIncome - totalExpenses
+    }
+    
+    var expensesByCategory: [(category: String, amount: Double)] {
+        let expenseTransactions = transactions.filter { $0.type == TransactionType.debit.rawValue }
+        let grouped = Dictionary(grouping: expenseTransactions) { $0.category }
+        return grouped.map { (category: $0.key, amount: $0.value.reduce(0) { $0 + $1.amount }) }
+            .sorted { $0.amount > $1.amount }
+    }
 }
+
